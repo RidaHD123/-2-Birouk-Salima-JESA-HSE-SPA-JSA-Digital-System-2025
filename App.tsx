@@ -731,43 +731,43 @@ const PreviewMode = ({
     const isRTL = language === 'ar';
 
     const PrintHeader = () => (
-      <div className="border-b-4 border-jesa-blue pb-4 mb-6">
-        <div className="flex justify-between items-end mb-4">
-          <div className="flex gap-6 grayscale opacity-80 scale-90 origin-left">
+      <div className="border-b-2 border-jesa-blue pb-2 mb-4">
+        <div className="flex justify-between items-end mb-2">
+          <div className="flex gap-4 grayscale opacity-80 scale-75 origin-left">
              <JesaLogo /> <OcpLogo /> <WorleyLogo />
           </div>
           <div className="text-right">
-             <h1 className="text-3xl font-black text-jesa-blue tracking-tighter">SPA / JSA</h1>
-             <p className="text-sm text-gray-500 font-bold uppercase tracking-widest">Job Safety Analysis</p>
+             <h1 className="text-2xl font-black text-jesa-blue tracking-tighter">SPA / JSA</h1>
+             <p className="text-xs text-gray-500 font-bold uppercase tracking-widest">Job Safety Analysis</p>
           </div>
         </div>
         
-        {/* Professional Header Grid */}
-        <div className="bg-gray-50 border border-gray-300 grid grid-cols-4 text-[10px]">
-            <div className="p-2 border-r border-b border-gray-300">
+        {/* Professional Header Grid - Compact */}
+        <div className="bg-gray-50 border border-gray-300 grid grid-cols-4 text-[9px]">
+            <div className="p-1.5 border-r border-b border-gray-300">
                 <span className="block font-bold text-gray-500 uppercase">{t.meta.company}</span>
                 <span className="font-bold">{jsa.metadata?.company || 'JESA'}</span>
             </div>
-            <div className="p-2 border-r border-b border-gray-300">
+            <div className="p-1.5 border-r border-b border-gray-300">
                 <span className="block font-bold text-gray-500 uppercase">{t.meta.project}</span>
                 <span className="font-bold">{jsa.metadata?.project || '_________________'}</span>
             </div>
-            <div className="p-2 border-r border-b border-gray-300">
+            <div className="p-1.5 border-r border-b border-gray-300">
                 <span className="block font-bold text-gray-500 uppercase">{t.meta.workOrder}</span>
                 <span className="font-mono">{jsa.metadata?.workOrder || '_________________'}</span>
             </div>
-            <div className="p-2 border-b border-gray-300">
+            <div className="p-1.5 border-b border-gray-300">
                 <span className="block font-bold text-gray-500 uppercase">{t.date}</span>
                 <span className="font-mono">{new Date().toLocaleDateString()}</span>
             </div>
             
-            <div className="col-span-2 p-2 border-r border-gray-300">
+            <div className="col-span-2 p-1.5 border-r border-gray-300">
                 <span className="block font-bold text-gray-500 uppercase">{t.editor.jobTitle}</span>
-                <span className="font-bold text-base text-jesa-blue leading-tight">
+                <span className="font-bold text-sm text-jesa-blue leading-tight">
                     {language === 'ar' ? jsa.title.ar : language === 'fr' ? jsa.title.fr : jsa.title.en}
                 </span>
             </div>
-             <div className="col-span-2 p-2 border-gray-300 flex justify-between items-center">
+             <div className="col-span-2 p-1.5 border-gray-300 flex justify-between items-center">
                  <div>
                     <span className="block font-bold text-gray-500 uppercase">{t.location}</span>
                     <span className="font-bold">{jsa.locations[0].name}</span>
@@ -816,39 +816,39 @@ const PreviewMode = ({
         </div>
 
         {/* --- PAGE 1 --- */}
-        <div id="printArea" className="w-[210mm] h-[297mm] mx-auto bg-white shadow-xl p-[10mm] text-xs leading-tight mb-8 relative">
+        <div id="printArea" className="w-[210mm] h-[297mm] mx-auto bg-white shadow-xl p-[10mm] text-xs leading-tight mb-8 relative overflow-hidden">
           
           <PrintHeader />
 
-          <div className="grid grid-cols-12 gap-4 mb-4">
+          <div className="grid grid-cols-12 gap-2 mb-2">
              {/* Left Column Info */}
              <div className="col-span-9">
-                 <div className="mb-4">
-                    <h2 className="bg-gray-800 text-white px-2 py-1 font-bold uppercase text-[10px] tracking-wider mb-2 flex justify-between items-center">
+                 <div className="mb-2">
+                    <h2 className="bg-gray-800 text-white px-2 py-1 font-bold uppercase text-[9px] tracking-wider mb-1 flex justify-between items-center">
                         <span>{t.tools}</span>
-                        <span className="opacity-50 text-[9px]">Mandatory Equipment</span>
+                        <span className="opacity-50 text-[8px]">Mandatory Equipment</span>
                     </h2>
-                    <div className="grid grid-cols-3 gap-2">
+                    <div className="grid grid-cols-3 gap-1">
                         {jsa.tools.map((tool) => (
-                            <div key={tool.id} className="border p-1.5 rounded-sm bg-gray-50/50 border-gray-200">
-                                <div className="font-bold text-[10px] leading-tight">{tool.name}</div>
-                                <div className="text-gray-500 text-[9px] font-mono">{tool.brandModel}</div>
+                            <div key={tool.id} className="border p-1 rounded-sm bg-gray-50/50 border-gray-200">
+                                <div className="font-bold text-[9px] leading-tight">{tool.name}</div>
+                                <div className="text-gray-500 text-[8px] font-mono">{tool.brandModel}</div>
                             </div>
                         ))}
                     </div>
                  </div>
                  {/* Team Members List on Page 1 */}
-                 <div className="mb-4">
-                     <h2 className="bg-blue-800 text-white px-2 py-1 font-bold uppercase text-[10px] tracking-wider mb-2">{t.meta.teamMembers}</h2>
-                     <div className="flex flex-wrap gap-2">
+                 <div className="mb-2">
+                     <h2 className="bg-blue-800 text-white px-2 py-1 font-bold uppercase text-[9px] tracking-wider mb-1">{t.meta.teamMembers}</h2>
+                     <div className="flex flex-wrap gap-1">
                          {jsa.metadata?.teamMembers && jsa.metadata.teamMembers.length > 0 ? jsa.metadata.teamMembers.map((member, i) => (
-                             <span key={i} className="border border-gray-300 px-2 py-1 rounded text-[10px] font-medium">{member}</span>
+                             <span key={i} className="border border-gray-300 px-2 py-0.5 rounded text-[9px] font-medium">{member}</span>
                          )) : <span className="text-gray-300 italic">No team members listed</span>}
                      </div>
                  </div>
              </div>
              {/* Right Column Matrix */}
-             <div className="col-span-3 flex gap-2 h-32">
+             <div className="col-span-3 flex gap-2 h-28">
                  <div className="flex-1"><RiskMatrix initial={true} /></div>
                  <div className="flex-1"><RiskMatrix initial={false} /></div>
              </div>
@@ -857,14 +857,14 @@ const PreviewMode = ({
           <div className="grid grid-cols-2 gap-4 mb-4">
              {/* Hazards Column */}
              <div>
-                 <h2 className="bg-jesa-orange text-white px-2 py-1 font-bold uppercase text-[10px] mb-2">{t.hazards}</h2>
+                 <h2 className="bg-jesa-orange text-white px-2 py-1 font-bold uppercase text-[9px] mb-1">{t.hazards}</h2>
                  <div className="border-t-2 border-jesa-orange">
                     {jsa.hazards.map((h, i) => (
-                        <div key={h.id} className="flex gap-2 border-b border-gray-100 py-1.5">
-                            <span className="font-bold text-jesa-orange w-4 flex-shrink-0">{i + 1}.</span>
+                        <div key={h.id} className="flex gap-2 border-b border-gray-100 py-1">
+                            <span className="font-bold text-jesa-orange w-4 flex-shrink-0 text-[9px]">{i + 1}.</span>
                             <div>
-                                <div className="font-bold text-gray-800 text-[11px] leading-tight">{h.description}</div>
-                                {h.limit && <div className="text-[9px] text-red-600 font-mono inline-block bg-red-50 px-1 rounded-sm mt-0.5">{h.limit}</div>}
+                                <div className="font-bold text-gray-800 text-[10px] leading-tight">{h.description}</div>
+                                {h.limit && <div className="text-[8px] text-red-600 font-mono inline-block bg-red-50 px-1 rounded-sm mt-0.5">{h.limit}</div>}
                             </div>
                         </div>
                     ))}
@@ -872,14 +872,14 @@ const PreviewMode = ({
              </div>
              {/* Controls Column */}
              <div>
-                <h2 className="bg-green-600 text-white px-2 py-1 font-bold uppercase text-[10px] mb-2">{t.controls}</h2>
+                <h2 className="bg-green-600 text-white px-2 py-1 font-bold uppercase text-[9px] mb-1">{t.controls}</h2>
                 <div className="border-t-2 border-green-600">
                     {jsa.controls.map((c, i) => (
-                        <div key={c.id} className="flex gap-2 border-b border-gray-100 py-1.5">
-                            <span className="font-bold text-green-700 w-4 flex-shrink-0">{i + 1}.</span>
+                        <div key={c.id} className="flex gap-2 border-b border-gray-100 py-1">
+                            <span className="font-bold text-green-700 w-4 flex-shrink-0 text-[9px]">{i + 1}.</span>
                             <div>
-                                <div className="font-bold text-gray-800 text-[11px] leading-tight">{c.description}</div>
-                                <div className="flex gap-1 text-[9px] mt-0.5">
+                                <div className="font-bold text-gray-800 text-[10px] leading-tight">{c.description}</div>
+                                <div className="flex gap-1 text-[8px] mt-0.5">
                                     <span className="bg-gray-100 px-1 rounded border border-gray-200 text-gray-600">{c.type}</span>
                                     {c.standardRef && <span className="text-blue-600 italic font-medium">{c.standardRef}</span>}
                                 </div>
@@ -894,9 +894,9 @@ const PreviewMode = ({
         </div>
 
         {/* --- PAGE 2 --- */}
-        <div id="printArea2" className="w-[210mm] h-[297mm] mx-auto bg-white shadow-xl p-[10mm] text-xs leading-tight relative flex flex-col">
+        <div id="printArea2" className="w-[210mm] h-[297mm] mx-auto bg-white shadow-xl p-[10mm] text-xs leading-tight relative flex flex-col overflow-hidden">
           
-          <div className="flex justify-between items-center border-b-2 border-gray-200 pb-2 mb-6">
+          <div className="flex justify-between items-center border-b-2 border-gray-200 pb-2 mb-4">
              <div className="flex gap-2 grayscale opacity-60 h-6">
                 <JesaLogo /> <OcpLogo /> <WorleyLogo />
              </div>
@@ -905,24 +905,24 @@ const PreviewMode = ({
           </div>
 
           {/* Steps Table */}
-          <div className="mb-6 flex-grow">
+          <div className="mb-4 flex-grow overflow-hidden">
             <table className="w-full text-left border-collapse border border-gray-300">
                 <thead>
-                    <tr className="bg-jesa-blue text-white text-[10px] uppercase tracking-wider">
-                        <th className={`p-2 border border-blue-800 w-12 text-center`}>#</th>
-                        <th className={`p-2 border border-blue-800 ${isRTL ? 'text-right' : 'text-left'}`}>Activity Step / Procedure</th>
-                        <th className={`p-2 border border-blue-800 w-1/4 ${isRTL ? 'text-right' : 'text-left'}`}>Hazard Reference</th>
-                        <th className={`p-2 border border-blue-800 w-16 text-center`}>Check</th>
+                    <tr className="bg-jesa-blue text-white text-[9px] uppercase tracking-wider">
+                        <th className={`p-1 border border-blue-800 w-8 text-center`}>#</th>
+                        <th className={`p-1 border border-blue-800 ${isRTL ? 'text-right' : 'text-left'}`}>Activity Step / Procedure</th>
+                        <th className={`p-1 border border-blue-800 w-1/4 ${isRTL ? 'text-right' : 'text-left'}`}>Hazard Reference</th>
+                        <th className={`p-1 border border-blue-800 w-12 text-center`}>Check</th>
                     </tr>
                 </thead>
                 <tbody>
                     {jsa.steps.map((step) => (
-                        <tr key={step.id} className="border-b border-gray-200">
-                            <td className="p-2 border-r border-gray-200 text-center font-bold text-gray-500">{step.id}</td>
-                            <td className="p-2 border-r border-gray-200 font-medium text-[11px]">{step.description}</td>
-                            <td className="p-2 border-r border-gray-200 text-[10px] text-red-700 bg-red-50/30">{step.hazardRef}</td>
-                            <td className="p-2 text-center">
-                                <div className="w-4 h-4 border-2 border-gray-300 rounded inline-block"></div>
+                        <tr key={step.id} className="border-b border-gray-200 text-[10px]">
+                            <td className="p-1 border-r border-gray-200 text-center font-bold text-gray-500">{step.id}</td>
+                            <td className="p-1 border-r border-gray-200 font-medium leading-tight">{step.description}</td>
+                            <td className="p-1 border-r border-gray-200 text-[9px] text-red-700 bg-red-50/30 leading-tight">{step.hazardRef}</td>
+                            <td className="p-1 text-center">
+                                <div className="w-3 h-3 border border-gray-300 rounded inline-block"></div>
                             </td>
                         </tr>
                     ))}
@@ -933,12 +933,12 @@ const PreviewMode = ({
            {/* Emergency & Signatures Area (Fixed at bottom of Page 2) */}
            <div className="mt-auto">
                 <div className="grid grid-cols-2 gap-4 mb-4">
-                    <div className="p-3 bg-red-50 border border-red-100 rounded">
-                        <h3 className="font-black text-red-700 mb-2 uppercase text-[10px] flex items-center gap-2">
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+                    <div className="p-2 bg-red-50 border border-red-100 rounded">
+                        <h3 className="font-black text-red-700 mb-1 uppercase text-[9px] flex items-center gap-2">
+                            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
                             {t.emergency}
                         </h3>
-                        <div className="text-[10px] space-y-1">
+                        <div className="text-[9px] space-y-1">
                             <div className="flex justify-between border-b border-red-100 pb-1">
                                 <span className="text-red-900">Medical / Ambulance</span>
                                 <span className="font-mono font-bold text-red-600">{jsa.locations[0].emergencyPhone}</span>
@@ -954,12 +954,12 @@ const PreviewMode = ({
                         </div>
                     </div>
                     
-                    <div className="p-3 bg-gray-50 border border-gray-200 rounded flex flex-col justify-between">
+                    <div className="p-2 bg-gray-50 border border-gray-200 rounded flex flex-col justify-between">
                         <div>
-                            <h3 className="font-bold text-gray-700 mb-2 uppercase text-[10px]">Permit Status</h3>
+                            <h3 className="font-bold text-gray-700 mb-1 uppercase text-[9px]">Permit Status</h3>
                             <div className="flex flex-wrap gap-1">
                                 {jsa.requiredPermits.map(p => (
-                                    <span key={p} className="bg-white border border-gray-300 px-1.5 py-0.5 rounded text-[9px] font-bold text-gray-800 shadow-sm">{p}</span>
+                                    <span key={p} className="bg-white border border-gray-300 px-1 py-0.5 rounded text-[8px] font-bold text-gray-800 shadow-sm">{p}</span>
                                 ))}
                             </div>
                         </div>
@@ -972,39 +972,39 @@ const PreviewMode = ({
                         <div className="col-span-1 border-r border-gray-300 pr-2">
                             <p className="text-[9px] font-bold text-gray-400 uppercase mb-4">{t.preparedBy}</p>
                             {signatures.creator.signatureImage ? (
-                                <img src={signatures.creator.signatureImage} className="h-10 object-contain mx-auto" alt="Sig" />
+                                <img src={signatures.creator.signatureImage} className="h-8 object-contain mx-auto" alt="Sig" />
                             ) : signatures.creator.name ? (
-                                <div className="h-10 flex items-center justify-center text-2xl text-blue-900 transform -rotate-2" style={{ fontFamily: "'Great Vibes', cursive" }}>
+                                <div className="h-8 flex items-center justify-center text-xl text-blue-900 transform -rotate-2" style={{ fontFamily: "'Great Vibes', cursive" }}>
                                     {signatures.creator.name}
                                 </div>
-                            ) : <div className="h-10"></div>}
+                            ) : <div className="h-8"></div>}
                             <div className="border-t border-gray-300 pt-1 text-center">
-                                <p className="font-bold text-[10px]">{signatures.creator.name || '____________'}</p>
+                                <p className="font-bold text-[9px]">{signatures.creator.name || '____________'}</p>
                             </div>
                         </div>
                         <div className="col-span-1 border-r border-gray-300 pr-2">
                             <p className="text-[9px] font-bold text-gray-400 uppercase mb-4">{t.approvedBy}</p>
                             {signatures.supervisor.signatureImage ? (
-                                <img src={signatures.supervisor.signatureImage} className="h-10 object-contain mx-auto" alt="Sig" />
+                                <img src={signatures.supervisor.signatureImage} className="h-8 object-contain mx-auto" alt="Sig" />
                             ) : signatures.supervisor.name ? (
-                                <div className="h-10 flex items-center justify-center text-2xl text-blue-900 transform -rotate-2" style={{ fontFamily: "'Great Vibes', cursive" }}>
+                                <div className="h-8 flex items-center justify-center text-xl text-blue-900 transform -rotate-2" style={{ fontFamily: "'Great Vibes', cursive" }}>
                                     {signatures.supervisor.name}
                                 </div>
-                            ) : <div className="h-10"></div>}
+                            ) : <div className="h-8"></div>}
                             <div className="border-t border-gray-300 pt-1 text-center">
-                                <p className="font-bold text-[10px]">{signatures.supervisor.name || '____________'}</p>
+                                <p className="font-bold text-[9px]">{signatures.supervisor.name || '____________'}</p>
                             </div>
                         </div>
                         <div className="col-span-2">
                             <div className="h-full flex flex-col justify-center items-center">
-                                <p className="text-3xl text-jesa-blue mb-1 transform -rotate-3" style={{ fontFamily: "'Great Vibes', cursive" }}>BIROUK Salima</p>
-                                <p className="text-[10px] uppercase font-bold tracking-wider text-black">HSE Operations Manager - Corporate</p>
+                                <p className="text-2xl text-jesa-blue mb-1 transform -rotate-3" style={{ fontFamily: "'Great Vibes', cursive" }}>BIROUK Salima</p>
+                                <p className="text-[9px] uppercase font-bold tracking-wider text-black">HSE Operations Manager - Corporate</p>
                                 <p className="text-[8px] text-gray-500 uppercase tracking-widest mt-1">Global JESA • OCP • Worley HSE Validation</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="text-[8px] text-gray-400 text-right mt-2">
+                <div className="text-[8px] text-gray-400 text-right mt-1">
                     JESA.SPA.2025 • Generated: {new Date().toISOString().split('T')[0]} • Page 2/2
                 </div>
            </div>
