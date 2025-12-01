@@ -1,0 +1,9 @@
+{
+  "name": "JESA HSE SPA/JSA Digital System 2025",
+  "description": "The ultimate AI-powered Safe Performance Analysis and Job Safety Analysis system for JESA, OCP, and Worley. Features multi-language support (EN/FR/AR), offline capabilities, and instant PDF generation.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ]
+}
