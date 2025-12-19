@@ -131,10 +131,17 @@ export const generateJSAFromAI = async (jobTitle: string, lang: Language): Promi
 
     const data = JSON.parse(text);
     
-    // Enrich with static location data
+    // Enrich with static location data and default metadata to match JSAData type
     return {
       id: `ai-${Date.now()}`,
       ...data,
+      metadata: {
+        company: 'JESA',
+        project: '',
+        workOrder: '',
+        teamLeader: '',
+        teamMembers: []
+      },
       locations: LOCATIONS
     };
   } catch (error) {

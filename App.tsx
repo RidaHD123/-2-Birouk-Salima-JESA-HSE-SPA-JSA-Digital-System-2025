@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect, useRef } from 'react';
 import { TRANSLATIONS, SEED_JOBS, LOCATIONS, PROJECTS_LIST } from './constants';
 import { JSAData, Language, AppState, SignatureData, RiskScore } from './types';
@@ -904,8 +902,8 @@ const PreviewMode = ({
              <span className="text-xs font-mono text-gray-400">Ref: {jsa.id}</span>
           </div>
 
-          {/* Steps Table */}
-          <div className="mb-4 flex-grow overflow-hidden">
+          {/* Steps Table - Enhanced for A4 Fitting */}
+          <div className="mb-4 flex-grow overflow-hidden relative">
             <table className="w-full text-left border-collapse border border-gray-300">
                 <thead>
                     <tr className="bg-jesa-blue text-white text-[9px] uppercase tracking-wider">
@@ -917,11 +915,11 @@ const PreviewMode = ({
                 </thead>
                 <tbody>
                     {jsa.steps.map((step) => (
-                        <tr key={step.id} className="border-b border-gray-200 text-[10px]">
-                            <td className="p-1 border-r border-gray-200 text-center font-bold text-gray-500">{step.id}</td>
-                            <td className="p-1 border-r border-gray-200 font-medium leading-tight">{step.description}</td>
-                            <td className="p-1 border-r border-gray-200 text-[9px] text-red-700 bg-red-50/30 leading-tight">{step.hazardRef}</td>
-                            <td className="p-1 text-center">
+                        <tr key={step.id} className="border-b border-gray-200 text-[9px]">
+                            <td className="p-1 border-r border-gray-200 text-center font-bold text-gray-500 py-1.5">{step.id}</td>
+                            <td className="p-1 border-r border-gray-200 font-medium leading-tight py-1.5">{step.description}</td>
+                            <td className="p-1 border-r border-gray-200 text-[9px] text-red-700 bg-red-50/30 leading-tight py-1.5">{step.hazardRef}</td>
+                            <td className="p-1 text-center py-1.5">
                                 <div className="w-3 h-3 border border-gray-300 rounded inline-block"></div>
                             </td>
                         </tr>
@@ -1161,7 +1159,12 @@ const App: React.FC = () => {
             onUpdateJSA={handleUpdateJSA}
             onRiskChange={handleRiskChange}
             signatures={state.signatures}
-            setSignatures={(cb) => setState(p => ({...p, signatures: typeof cb === 'function' ? cb(p.signatures) : cb}))}
+            setSignatures={(action) => setState(prev => ({
+              ...prev,
+              signatures: typeof action === 'function' 
+                  ? (action as Function)(prev.signatures) 
+                  : action
+            }))}
             onClose={() => setState(prev => ({...prev, mode: 'search', currentJSA: null}))}
             onPreview={() => setState(prev => ({...prev, mode: 'preview'}))}
           />
