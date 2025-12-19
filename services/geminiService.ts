@@ -1,29 +1,27 @@
+
 import { GoogleGenAI, Type } from "@google/genai";
 import { JSAData, Language } from "../types";
 import { LOCATIONS } from "../constants";
 
-// In a real deployment, this should be proxied or handled securely. 
-// For this demo, we assume the environment variable is available.
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
 
 export const generateJSAFromAI = async (jobTitle: string, lang: Language): Promise<JSAData> => {
-  const model = "gemini-2.5-flash";
+  const model = "gemini-3-flash-preview";
   
   const systemPrompt = `
     You are BIROUK Salima, the world's leading HSE expert at JESA (Jacobs + OCP).
     Your task is to generate a comprehensive Job Safety Analysis (JSA/SPA) for the job title provided.
     
     CRITICAL RULES:
-    1. Output strictly valid JSON matching the schema.
-    2. Provide exactly 12 hazards with specific legal limits (e.g. OSHA, NIOSH values).
-    3. Provide exactly 8 specific tools with professional brand/model examples.
-    4. Provide exactly 8 mandatory controls referencing ISO/OSHA standards.
-    5. Provide exactly 12 sequential work steps.
-    6. Translate titles into English, French, and Arabic.
-    7. Be extremely technical and precise.
+    1. Output strictly valid JSON matching the schema provided.
+    2. Hazards: Exactly 12, specific industrial risks with OSHA/NIOSH legal limits.
+    3. Tools: Exactly 8, professional grade with real brand/model examples.
+    4. Controls: Exactly 8, high-quality preventive measures (PPE, Procedure, Standard).
+    5. Steps: Exactly 12, logical sequential work execution steps.
+    6. Translate titles accurately into English, French, and Arabic.
+    7. Be technical, formal, and industrially precise.
   `;
 
-  // Define the schema using the SDK's Type enum
   const jsaSchema = {
     type: Type.OBJECT,
     properties: {
@@ -117,12 +115,12 @@ export const generateJSAFromAI = async (jobTitle: string, lang: Language): Promi
   try {
     const response = await ai.models.generateContent({
       model: model,
-      contents: `Generate a JSA for: ${jobTitle}. Ensure High technical accuracy for industrial settings.`,
+      contents: `Generate a full industrial JSA/SPA for this task: "${jobTitle}". Technical depth: High. Language Context: ${lang}.`,
       config: {
         systemInstruction: systemPrompt,
         responseMimeType: "application/json",
         responseSchema: jsaSchema,
-        temperature: 0.3, // Low temperature for factual consistency
+        temperature: 0.1,
       }
     });
 
@@ -131,7 +129,7 @@ export const generateJSAFromAI = async (jobTitle: string, lang: Language): Promi
 
     const data = JSON.parse(text);
     
-    // Enrich with static location data and default metadata to match JSAData type
+    // Safety check and enrichment to fulfill JSAData interface
     return {
       id: `ai-${Date.now()}`,
       ...data,
@@ -145,7 +143,7 @@ export const generateJSAFromAI = async (jobTitle: string, lang: Language): Promi
       locations: LOCATIONS
     };
   } catch (error) {
-    console.error("Gemini Generation Error:", error);
+    console.error("Gemini HSE Expert System Error:", error);
     throw error;
   }
 };
